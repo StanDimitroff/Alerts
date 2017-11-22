@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B7BE26EB87D0B182A01A6B5 /* Alerts.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = Alerts.podspec; path = ../Alerts.podspec; sourceTree = "<group>"; };
+		1B7BE26EB87D0B182A01A6B5 /* Alerts.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Alerts.podspec; path = ../Alerts.podspec; sourceTree = "<group>"; };
 		2859E77EDBC50D973C9A408D /* Pods_Alerts_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alerts_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A787841452B86173C315D1F /* Pods-Alerts_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alerts_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Alerts_Example/Pods-Alerts_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Alerts_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alerts_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,10 +43,10 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		69E49C9BEE59A0BE917C8EDD /* Pods-Alerts_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alerts_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Alerts_Example/Pods-Alerts_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6DFC1ECA2BD671A4692EFDB0 /* Pods-Alerts_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alerts_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Alerts_Tests/Pods-Alerts_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		7BCB814803EACA8F7BD0E009 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		7BCB814803EACA8F7BD0E009 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BD60F3C980900184750F6048 /* Pods_Alerts_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alerts_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF93DBBEFAA98BF66F0D9C89 /* Pods-Alerts_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alerts_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Alerts_Tests/Pods-Alerts_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		E51B8C0CBDCD7DE232C772B4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E51B8C0CBDCD7DE232C772B4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +215,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = NXZW7962A8;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -517,10 +518,11 @@
 			baseConfigurationReference = 69E49C9BEE59A0BE917C8EDD /* Pods-Alerts_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NXZW7962A8;
 				INFOPLIST_FILE = Alerts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.getset.Alerts-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -532,10 +534,11 @@
 			baseConfigurationReference = 2A787841452B86173C315D1F /* Pods-Alerts_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NXZW7962A8;
 				INFOPLIST_FILE = Alerts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.getset.Alerts-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

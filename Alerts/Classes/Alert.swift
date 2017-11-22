@@ -12,7 +12,7 @@ public typealias ActionResponder = () -> ()
 
 public class Alert: NSObject {
 
-    struct Action {
+    public struct Action {
         let title: String
         let style: UIAlertActionStyle
         let responders: [ActionResponder]?
@@ -35,14 +35,11 @@ public class Alert: NSObject {
 
     // MARK: - Properties
     private var alertController: UIAlertController!
-    private var presenter: UIViewController? //= UIApplication.shared.keyWindow?.currentViewController
+    private var presenter: UIViewController
     private let style: UIAlertControllerStyle!
 
-    var actions: [Action] = [] {
-        didSet {
-            setActions()
-        }
-    }
+    /// Pass multiple actions to alert
+    public var actions: [Action] = []
 
     /// Construct the Alert object
     ///
@@ -50,9 +47,11 @@ public class Alert: NSObject {
     ///   - title: the desired title of alert (optional)
     ///   - message: the body of alert (optional)
     ///   - style: the desired UIAlertControllerStyle (required)
+    ///   - presenter: UIViewController instance to present on (required)
     public init(title: String? = nil,
          message: String? = nil,
-         style: UIAlertControllerStyle) {
+         style: UIAlertControllerStyle,
+         presenter: UIViewController) {
 
         var alertTitle: String? = nil
         var alertMessage: String? = nil
@@ -68,7 +67,8 @@ public class Alert: NSObject {
         alertController = UIAlertController(title: alertTitle,
                                             message: alertMessage,
                                             preferredStyle: style)
-        self.style = style
+        self.style      = style
+        self.presenter = presenter
     }
 
     // MARK: - Private API
@@ -95,10 +95,22 @@ public class Alert: NSObject {
         }
     }
 
+    /// Add single action to to alert
+    ///
+    /// - Parameter action: action to add
+    public func addAction(_ action: Action) {
+        actions.append(action)
+    }
+
     /// Present the alert on the passed UIViewController
     func show() {
+        setActions()
+        
         DispatchQueue.main.async {
-            self.presenter?.present(self.alertController, animated: true, completion: nil)
+            self.presenter.present(
+                self.alertController,
+                animated: true,
+                completion: nil)
         }
     }
 }
