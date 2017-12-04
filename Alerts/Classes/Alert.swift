@@ -10,7 +10,7 @@ import UIKit
 public typealias Action = Alert.Action
 public typealias Responder = () -> ()
 
-public class Alert: NSObject {
+public class Alert {
 
     public struct Action {
         let title: String
@@ -39,37 +39,28 @@ public class Alert: NSObject {
 
     // MARK: - Properties
     private var alertController: UIAlertController!
-    private var presenter: UIViewController
-    private let style: UIAlertControllerStyle!
+    private var presenter: UIViewController?
+    private var title: String?
+    private var message: String?
+    private var style: UIAlertControllerStyle = .alert
 
-    /// Pass multiple actions to alert
-    public var actions: [Action] = []
+    private var actions: [Action] = []
+    
+    public init() { }
 
-    init(
-         title: String? = nil,
-         message: String? = nil,
-         style: UIAlertControllerStyle,
-         presenter: UIViewController) {
-
-        var alertTitle: String? = nil
-        var alertMessage: String? = nil
-
-        if let tlt = title {
-            alertTitle = NSLocalizedString(tlt, comment: tlt)
-        }
-
-        if let msg = message {
-            alertMessage = NSLocalizedString(msg, comment: msg)
-        }
-
-        alertController = UIAlertController(title: alertTitle,
-                                            message: alertMessage,
-                                            preferredStyle: style)
+    // MARK: - Private API
+    private func createAlert(
+        _ title: String? = nil,
+        message: String? = nil,
+        style: UIAlertControllerStyle,
+        presenter: UIViewController) {
+        
+        self.title      = title
+        self.message    = message
         self.style      = style
         self.presenter = presenter
     }
-
-    // MARK: - Private API
+    
     private func setActions() {
         for action in actions {
             let alertAction = UIAlertAction(
@@ -112,51 +103,69 @@ public class Alert: NSObject {
     /// - Parameters:
     ///   - title: the desired title of alert (optional)
     ///   - message: the body of alert (optional)
-    ///   - presenter: UIViewController instance to present on (required)
+    ///   - presenter: UIViewController instance where to present (required)
     /// - Returns: Alert object
-    public static func makeAlert(
+    public func makeAlert(
         title: String?,
         message: String?,
         presenter: UIViewController) -> Alert {
-        let alert = Alert(
-            title: title,
-            message: message,
-            style: .alert,
-            presenter: presenter)
-
-        return alert
+        createAlert(title, message: message, style: .alert, presenter: presenter)
+        
+        return self
     }
 
     /// Create action sheet
     ///
-    /// - Parameter presenter: UIViewController instance to present on (required)
+    /// - Parameter presenter: UIViewController instance where to present (required)
     /// - Returns: Alert object
-    public static func makeActionSheet(presenter: UIViewController) -> Alert {
-        let action = Alert(style: .actionSheet, presenter: presenter)
-
-        return action
+    public func makeActionSheet(presenter: UIViewController) -> Alert {
+        createAlert(style: .actionSheet, presenter: presenter)
+        
+        return self
     }
 
     /// Add multiple actions to alert
     ///
     /// - Parameter actions: actions to add
-    public func addActions(_ actions: Action...) {
+    /// - Returns: the created alert
+    public func addActions(_ actions: Action...) -> Alert {
         self.actions.append(contentsOf: actions)
+        
+        return self
     }
 
     /// Add single action to alert
     ///
     /// - Parameter action: action to add in actions
-    public func addAction(_ action: Action) {
+    /// - Returns: the created alert
+    public func addAction(_ action: Action) -> Alert {
         actions.append(action)
+        
+        return self
     }
 
     /// Present the alert on the passed UIViewController
     public func show() {
+        var alertTitle: String? = nil
+        var alertMessage: String? = nil
+
+        if let tlt = title {
+            alertTitle = NSLocalizedString(tlt, comment: tlt)
+        }
+
+        if let msg = message {
+            alertMessage = NSLocalizedString(msg, comment: msg)
+        }
+        
+        alertController = UIAlertController(
+            title: alertTitle,
+            message: alertMessage,
+            preferredStyle: style)
+        
         setActions()
         
         DispatchQueue.main.async {
-            self.presenter.present(
+            self.presenter?.present(
                 self.alertController,
                 animated: true,
                 completion: nil)

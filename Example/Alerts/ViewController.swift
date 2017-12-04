@@ -16,38 +16,32 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showAlert(_ sender: UIButton) {
-        let alert = Alert.makeAlert(
+        Alert()
+            .makeAlert(
             title: "Change background",
             message: "Background colour will be changed",
             presenter: self)
-
-        alert.actions = [
-            Action(
-                "Confirm",
-                responders: [
+            .addActions(Action("Confirm", responders:
+                [
                     {
                         self.view.backgroundColor = .cyan
                     }
                 ]),
-            Action("Cancel")
-        ]
-        
-        alert.show()
+                Action("Cancel")
+            )
+            .show()
     }
 
     @IBAction func showAction(_ sender: UIButton) {
-        let action = Alert.makeActionSheet(presenter: self)
-        action.actions = [
-            Action(
-                "Change background",
-                responders: [
+        Alert()
+            .makeActionSheet(presenter: self)
+            .addAction(Action("Change background", responders:
+                [
                     {
                         self.view.backgroundColor = .magenta
                     }
-                ])
-        ]
-
-        action.show()
+                ]))
+            .show()
     }
 }
 
