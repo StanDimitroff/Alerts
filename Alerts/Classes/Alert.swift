@@ -134,6 +134,16 @@ public class Alert {
         return self
     }
 
+    /// Add multiple actions to alert
+    ///
+    /// - Parameter actions: actions to add
+    /// - Returns: the created alert
+    public func addActions(_ actions: [Action]) -> Alert {
+        self.actions.append(contentsOf: actions)
+
+        return self
+    }
+
     /// Add single action to alert
     ///
     /// - Parameter action: action to add in actions
