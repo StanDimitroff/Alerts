@@ -106,8 +106,8 @@ public class Alert {
     ///   - presenter: UIViewController instance where to present (required)
     /// - Returns: Alert object
     public func makeAlert(
-        title: String?,
-        message: String?,
+        title: String? = nil,
+        message: String? = nil,
         presenter: UIViewController) -> Alert {
         createAlert(title, message: message, style: .alert, presenter: presenter)
         
@@ -138,6 +138,7 @@ public class Alert {
     ///
     /// - Parameter action: action to add in actions
     /// - Returns: the created alert
+    @discardableResult
     public func addAction(_ action: Action) -> Alert {
         actions.append(action)
         
