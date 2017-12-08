@@ -125,7 +125,7 @@ public class Alert {
         title: String? = nil,
         message: String? = nil,
         presenter: UIViewController) -> Alert {
-        createAlert(title, message: message, style: .alert, presenter: presenter)
+        createAlert(title, message: message, style: .actionSheet, presenter: presenter)
         
         return self
     }
