@@ -4,6 +4,9 @@
 [![Version](https://img.shields.io/cocoapods/v/Alerts.svg?style=flat)](http://cocoapods.org/pods/Alerts)
 [![License](https://img.shields.io/cocoapods/l/Alerts.svg?style=flat)](http://cocoapods.org/pods/Alerts)
 [![Platform](https://img.shields.io/cocoapods/p/Alerts.svg?style=flat)](http://cocoapods.org/pods/Alerts)
+[![CocoaPods](https://img.shields.io/cocoapods/dt/Alerts.svg)](http://cocoapods.org/pods/Alerts)
+[![CocoaPods](https://img.shields.io/cocoapods/at/Alerts.svg)](http://cocoapods.org/pods/Alerts)
+
 
 ## Example
 
