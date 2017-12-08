@@ -50,8 +50,8 @@ public class Alert {
 
     // MARK: - Private API
     private func createAlert(
-        _ title: String? = nil,
-        message: String? = nil,
+        _ title: String?,
+        message: String?,
         style: UIAlertControllerStyle,
         presenter: UIViewController) {
         
@@ -116,10 +116,16 @@ public class Alert {
 
     /// Create action sheet
     ///
-    /// - Parameter presenter: UIViewController instance where to present (required)
+    /// - Parameters:
+    ///   - title: the desired title of action sheet (optional)
+    ///   - message: the body of action sheet (optional)
+    ///   - presenter: UIViewController instance where to present (required)
     /// - Returns: Alert object
-    public func makeActionSheet(presenter: UIViewController) -> Alert {
-        createAlert(style: .actionSheet, presenter: presenter)
+    public func makeActionSheet(
+        title: String? = nil,
+        message: String? = nil,
+        presenter: UIViewController) -> Alert {
+        createAlert(title, message: message, style: .alert, presenter: presenter)
         
         return self
     }
@@ -156,7 +162,9 @@ public class Alert {
     }
 
     /// Present the alert on the passed UIViewController
-    public func show() {
+    ///
+    /// - Parameter completion: completion handler
+    public func show(withCompletion completion: (() -> Void)? = nil) {
         var alertTitle: String? = nil
         var alertMessage: String? = nil
 
@@ -179,7 +187,7 @@ public class Alert {
             self.presenter?.present(
                 self.alertController,
                 animated: true,
-                completion: nil)
+                completion: completion)
         }
     }
 }

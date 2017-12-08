@@ -21,15 +21,15 @@ class ViewController: UIViewController {
             title: "Change background",
             message: "Background colour will be changed",
             presenter: self)
-            .addActions(Action("Confirm", responders:
+            .addActions(Action("Confirm", style: .destructive, responders:
                 [
                     {
                         self.view.backgroundColor = .cyan
                     }
                 ]),
-                Action("Cancel")
+                Action("Cancel", style: .cancel)
             )
-            .show()
+            .show(withCompletion: { print("COMPLETION") })
     }
 
     @IBAction func showAction(_ sender: UIButton) {
