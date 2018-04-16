@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Alerts'
-  s.version          = '0.1.7'
+  s.version          = '1.0.0'
   s.summary          = 'Localized alerts & actions on top of UIAlertController'
 
 # This description is used to generate tags and improve search results.
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
 You can create alerts & actions with localized titles and messages with many responders binded to every action.
-All in chainable manner.
+All in a chainable manner.
                        DESC
 
   s.homepage         = 'https://github.com/StanDimitroff/Alerts'
@@ -27,17 +27,10 @@ All in chainable manner.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'StanDimitroff' => 'standimitroff@gmail.com' }
   s.source           = { :git => 'https://github.com/StanDimitroff/Alerts.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/standimitroff'
 
   s.ios.deployment_target = '9.3'
 
   s.source_files = 'Alerts/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'Alerts' => ['Alerts/Assets/*.png']
-  # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

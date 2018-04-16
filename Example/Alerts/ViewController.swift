@@ -29,7 +29,7 @@ class ViewController: UIViewController {
                 ]),
                 Action("Cancel", style: .cancel)
             )
-            .show(withCompletion: { print("COMPLETION") })
+            .show(withCompletion: { print("COMPLETION AFTER SHOW") })
     }
 
     @IBAction func showAction(_ sender: UIButton) {

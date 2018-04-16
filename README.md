@@ -12,7 +12,10 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+Uncomment lines in `Localizable.strings` to test the translation.
+
 ## Requirements
+iOS 9.3 or higher, Swift 4
 
 ## Installation
 
@@ -22,6 +25,10 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'Alerts'
 ```
+
+Install via [Carthage](https://github.com/Carthage/Carthage). Add this line to your Cartfile:
+
+`github "StanDimitroff/Alerts"`
 
 ## Author
 

@@ -58,7 +58,7 @@ public class Alert {
         self.title      = title
         self.message    = message
         self.style      = style
-        self.presenter = presenter
+        self.presenter  = presenter
     }
     
     private func setActions() {
@@ -187,7 +187,8 @@ public class Alert {
             self.presenter?.present(
                 self.alertController,
                 animated: true,
-                completion: completion)
+                completion: completion
+            )
         }
     }
 }
