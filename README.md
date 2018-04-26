@@ -6,6 +6,10 @@
 [![Platform](https://img.shields.io/cocoapods/p/Alerts.svg?style=flat)](http://cocoapods.org/pods/Alerts)
 [![CocoaPods](https://img.shields.io/cocoapods/dt/Alerts.svg)](http://cocoapods.org/pods/Alerts)
 [![CocoaPods](https://img.shields.io/cocoapods/at/Alerts.svg)](http://cocoapods.org/pods/Alerts)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+
+
 
 
 ## Example
@@ -28,7 +32,7 @@ pod 'Alerts'
 
 Install via [Carthage](https://github.com/Carthage/Carthage). Add this line to your Cartfile:
 
-`github "StanDimitroff/Alerts"`
+<pre>github "StanDimitroff/Alerts"</pre>
 
 ## Author
 
