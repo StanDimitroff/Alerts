@@ -14,7 +14,7 @@ public class Alert {
 
     public struct Action {
         let title: String
-        let style: UIAlertActionStyle
+        let style: UIAlertAction.Style
         let textColor: UIColor?
         let responders: [Responder]?
 
@@ -27,7 +27,7 @@ public class Alert {
         ///   - responders: action responders (optional). Defaults to []
         public init(
             _ title: String,
-            style: UIAlertActionStyle? = nil,
+            style: UIAlertAction.Style? = nil,
             textColor: UIColor? = nil,
             responders: [Responder]? = nil) {
             self.title      = title
@@ -42,7 +42,7 @@ public class Alert {
     private var presenter: UIViewController?
     private var title: String?
     private var message: String?
-    private var style: UIAlertControllerStyle = .alert
+    private var style: UIAlertController.Style = .alert
 
     private var actions: [Action] = []
     
@@ -52,7 +52,7 @@ public class Alert {
     private func createAlert(
         _ title: String?,
         message: String?,
-        style: UIAlertControllerStyle,
+        style: UIAlertController.Style,
         presenter: UIViewController) {
         
         self.title      = title
@@ -96,6 +96,8 @@ public class Alert {
 
             alertController.addAction(okAction)
         }
+
+        
     }
 
     /// Create alert
