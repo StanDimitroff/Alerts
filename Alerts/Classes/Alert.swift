@@ -12,6 +12,9 @@ public typealias Responder = () -> ()
 
 public class Alert {
 
+    /// Description
+    var prefersPhoneBehaviour: Bool = true
+
     public struct Action {
         let title: String
         let style: UIAlertAction.Style
@@ -96,8 +99,22 @@ public class Alert {
 
             alertController.addAction(okAction)
         }
+    }
 
-        
+    private func configurePresentation() {
+        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
+            if let popoverController = alertController.popoverPresentationController {
+                guard let view = presenter?.view else { return }
+                popoverController.sourceView = view
+                popoverController.sourceRect = CGRect(
+                    x: view.bounds.midX,
+                    y: view.bounds.maxY,
+                    width: 0,
+                    height: 0)
+                popoverController.permittedArrowDirections = []
+
+            }
+        }
     }
 
     /// Create alert
@@ -129,6 +146,17 @@ public class Alert {
         presenter: UIViewController) -> Alert {
         createAlert(title, message: message, style: .actionSheet, presenter: presenter)
         
+        return self
+    }
+
+    /// Description
+    ///
+    /// - Parameter block: Block of actions to perform (set parameters)
+    /// - Returns: Alert
+    /// - Throws: Error if cannot execute block
+    public func config(_ block: (Alert) throws -> Void) rethrows -> Self {
+        try block(self)
+
         return self
     }
 
@@ -184,6 +212,7 @@ public class Alert {
             preferredStyle: style)
         
         setActions()
+        configurePresentation()
         
         DispatchQueue.main.async {
             self.presenter?.present(
