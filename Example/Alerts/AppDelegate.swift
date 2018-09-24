@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Alerts
-//
-//  Created by StanDimitroff on 11/22/2017.
-//  Copyright (c) 2017 StanDimitroff. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -40,7 +32,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

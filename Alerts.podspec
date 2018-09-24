@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Alerts'
-  s.version          = '1.0.0'
-  s.summary          = 'Localized alerts & actions on top of UIAlertController'
+  s.version          = '1.0.1'
+  s.summary          = 'Alerts & actions on top of UIAlertController'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-You can create alerts & actions with localized titles and messages with many responders binded to every action.
-All in a chainable manner.
+Create alerts & actions with many responders binded to every action.
+All in a chainable manner. Both for iPhone and iPad.
                        DESC
 
   s.homepage         = 'https://github.com/StanDimitroff/Alerts'

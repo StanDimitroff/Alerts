@@ -1,10 +1,3 @@
-//
-//  Alert.swift
-//  Alerts
-//
-//  Created by Stanislav Dimitrov on 22.11.17.
-//
-
 import UIKit
 
 public typealias Action = Alert.Action
@@ -12,8 +5,17 @@ public typealias Responder = () -> ()
 
 public class Alert {
 
-    /// Description
-    var prefersPhoneBehaviour: Bool = true
+    /// An UIBarButtonItem to hook with the UIPopoverPresentationController if device is iPad
+    public var anchorButton: UIBarButtonItem?
+    
+    /// CGRect to present UIPopoverPresentationController if device is iPad
+    public var anchorRect: CGRect?
+
+    /// UIPopoverArrowDirection option set for UIPopoverPresentationController if device is iPad
+    public var arrowDirections: UIPopoverArrowDirection?
+
+    /// If true shows `Cancel` action. If false you can pass your own dismiss action.
+    public var dismissActionsEnabled: Bool = false
 
     public struct Action {
         let title: String
@@ -67,7 +69,7 @@ public class Alert {
     private func setActions() {
         for action in actions {
             let alertAction = UIAlertAction(
-                title: NSLocalizedString(action.title, comment: action.title),
+                title: action.title,
                 style: action.style,
                 handler: { [weak presenter] _ in
                     guard presenter != nil else { return }
@@ -82,16 +84,19 @@ public class Alert {
             alertController.addAction(alertAction)
         }
 
-        if style == .actionSheet {
+        if style == .actionSheet && dismissActionsEnabled {
+            var actionStyle: UIAlertAction.Style = .cancel
+            if Utils.deviceIsIPAD { actionStyle = .default }
+            
             let cancelAction = UIAlertAction(
                 title: NSLocalizedString("Cancel", comment: "Cancel"),
-                style: .cancel,
+                style: actionStyle,
                 handler: nil)
 
             alertController.addAction(cancelAction)
         }
 
-        if style == .alert && actions.isEmpty {
+        if style == .alert && actions.isEmpty && dismissActionsEnabled {
             let okAction = UIAlertAction(
                 title: NSLocalizedString("OK", comment: "OK"),
                 style: .default,
@@ -102,17 +107,35 @@ public class Alert {
     }
 
     private func configurePresentation() {
-        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
+        if Utils.deviceIsIPAD {
             if let popoverController = alertController.popoverPresentationController {
                 guard let view = presenter?.view else { return }
                 popoverController.sourceView = view
-                popoverController.sourceRect = CGRect(
-                    x: view.bounds.midX,
-                    y: view.bounds.maxY,
-                    width: 0,
-                    height: 0)
-                popoverController.permittedArrowDirections = []
 
+                if let anchorButton = self.anchorButton {
+                    popoverController.barButtonItem = anchorButton
+                }
+
+                var sourceRect: CGRect!
+                if let anchorRect = self.anchorRect {
+                    sourceRect = anchorRect
+                } else {
+                    sourceRect = CGRect(
+                        x: view.bounds.midX,
+                        y: view.bounds.maxY,
+                        width: 0,
+                        height: 0
+                    )
+                }
+                popoverController.sourceRect = sourceRect
+
+                var arrowDirections: UIPopoverArrowDirection!
+                if let directions = self.arrowDirections {
+                    arrowDirections = directions
+                } else {
+                    arrowDirections = []
+                }
+                popoverController.permittedArrowDirections = arrowDirections
             }
         }
     }
@@ -198,12 +221,12 @@ public class Alert {
         var alertTitle: String? = nil
         var alertMessage: String? = nil
 
-        if let tlt = title {
-            alertTitle = NSLocalizedString(tlt, comment: tlt)
+        if let tilte = self.title {
+            alertTitle = tilte
         }
 
-        if let msg = message {
-            alertMessage = NSLocalizedString(msg, comment: msg)
+        if let message = self.message {
+            alertMessage = message
         }
         
         alertController = UIAlertController(
@@ -223,4 +246,3 @@ public class Alert {
         }
     }
 }
-

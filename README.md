@@ -16,8 +16,6 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-Uncomment lines in `Localizable.strings` to test the translation.
-
 ## Requirements
 * iOS 9.3+
 * Swift 4+

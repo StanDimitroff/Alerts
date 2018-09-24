@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Alerts
-//
-//  Created by StanDimitroff on 11/22/2017.
-//  Copyright (c) 2017 StanDimitroff. All rights reserved.
-//
-
 import UIKit
 import Alerts
 
@@ -35,6 +27,9 @@ class ViewController: UIViewController {
     @IBAction func showAction(_ sender: UIButton) {
         Alert()
             .makeActionSheet(presenter: self)
+            .config {
+                $0.dismissActionsEnabled = true
+            }
             .addAction(Action("Change background", responders:
                 [
                     {
