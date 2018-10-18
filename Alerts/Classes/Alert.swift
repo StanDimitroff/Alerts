@@ -1,9 +1,11 @@
 import UIKit
 
 public typealias Action = Alert.Action
+public typealias FieldAction = Alert.FieldAction
 public typealias Responder = () -> ()
+public typealias FieldResponder = ([UITextField]?) -> ()
 
-public class Alert {
+public class Alert: NSObject {
 
     /// An UIBarButtonItem to hook with the UIPopoverPresentationController if device is iPad
     public var anchorButton: UIBarButtonItem?
@@ -16,6 +18,10 @@ public class Alert {
 
     /// If true shows `Cancel` action. If false you can pass your own dismiss action.
     public var dismissActionsEnabled: Bool = false
+
+    private var textFields: [UITextField]? {
+        return alertController.textFields
+    }
 
     public struct Action {
         let title: String
@@ -42,6 +48,31 @@ public class Alert {
         }
     }
 
+    public struct FieldAction {
+        let title: String
+        let style: UIAlertAction.Style
+        let textColor: UIColor?
+        let responders: [FieldResponder]?
+
+        /// Construct the Action object
+        ///
+        /// - Parameters:
+        ///   - title: action title (required)
+        ///   - style: action style (optional). Defaults to .default
+        ///   - textColor: action color (optional)
+        ///   - responders: action responders (optional). Defaults to []
+        public init(
+            _ title: String,
+            style: UIAlertAction.Style? = nil,
+            textColor: UIColor? = nil,
+            responders: [FieldResponder]? = nil) {
+            self.title      = title
+            self.style      = style ?? .default
+            self.textColor  = textColor
+            self.responders = responders
+        }
+    }
+
     // MARK: - Properties
     private var alertController: UIAlertController!
     private var presenter: UIViewController?
@@ -50,8 +81,7 @@ public class Alert {
     private var style: UIAlertController.Style = .alert
 
     private var actions: [Action] = []
-    
-    public init() { }
+    private var fieldActions: [FieldAction] = []
 
     // MARK: - Private API
     private func createAlert(
@@ -64,6 +94,22 @@ public class Alert {
         self.message    = message
         self.style      = style
         self.presenter  = presenter
+
+        var alertTitle: String? = nil
+        var alertMessage: String? = nil
+
+        if let tilte = self.title {
+            alertTitle = tilte
+        }
+
+        if let message = self.message {
+            alertMessage = message
+        }
+
+        alertController = UIAlertController(
+            title: alertTitle,
+            message: alertMessage,
+            preferredStyle: style)
     }
     
     private func setActions() {
@@ -75,6 +121,23 @@ public class Alert {
                     guard presenter != nil else { return }
 
                     action.responders?.forEach { $0() }
+            })
+
+            if let color = action.textColor {
+                alertAction.setValue(color, forKey: "titleTextColor")
+            }
+
+            alertController.addAction(alertAction)
+        }
+
+        for action in fieldActions {
+            let alertAction = UIAlertAction(
+                title: action.title,
+                style: action.style,
+                handler: { [weak presenter] _ in
+                    guard presenter != nil else { return }
+
+                    action.responders?.forEach { $0(self.textFields) }
             })
 
             if let color = action.textColor {
@@ -150,7 +213,7 @@ public class Alert {
     public func makeAlert(
         title: String? = nil,
         message: String? = nil,
-        presenter: UIViewController) -> Alert {
+        presenter: UIViewController) -> Self {
         createAlert(title, message: message, style: .alert, presenter: presenter)
         
         return self
@@ -166,16 +229,16 @@ public class Alert {
     public func makeActionSheet(
         title: String? = nil,
         message: String? = nil,
-        presenter: UIViewController) -> Alert {
+        presenter: UIViewController) -> Self {
         createAlert(title, message: message, style: .actionSheet, presenter: presenter)
         
         return self
     }
 
-    /// Description
+    /// Config `Alert` object
     ///
     /// - Parameter block: Block of actions to perform (set parameters)
-    /// - Returns: Alert
+    /// - Returns: Alert object
     /// - Throws: Error if cannot execute block
     public func config(_ block: (Alert) throws -> Void) rethrows -> Self {
         try block(self)
@@ -183,11 +246,25 @@ public class Alert {
         return self
     }
 
+    /// Adds text field to alert
+    ///
+    /// - Parameter placeholder: the text field placeholder text
+    /// - Returns: Alert object
+    public func addTextField(withPlaceholder placeholder: String) -> Self {
+        if case .actionSheet = style { return self }
+
+        alertController.addTextField(configurationHandler: { textField in
+            textField.placeholder = placeholder
+        })
+
+        return self
+    }
+
     /// Add multiple actions to alert
     ///
     /// - Parameter actions: actions to add
     /// - Returns: the created alert
-    public func addActions(_ actions: Action...) -> Alert {
+    public func addActions(_ actions: Action...) -> Self {
         self.actions.append(contentsOf: actions)
         
         return self
@@ -197,8 +274,28 @@ public class Alert {
     ///
     /// - Parameter actions: actions to add
     /// - Returns: the created alert
-    public func addActions(_ actions: [Action]) -> Alert {
+    public func addActions(_ actions: [Action]) -> Self {
         self.actions.append(contentsOf: actions)
+
+        return self
+    }
+
+    /// Add multiple actions to alert
+    ///
+    /// - Parameter actions: actions to add
+    /// - Returns: the created alert
+    public func addActions(_ actions: FieldAction...) -> Self {
+        fieldActions.append(contentsOf: actions)
+
+        return self
+    }
+
+    /// Add multiple actions to alert
+    ///
+    /// - Parameter actions: actions to add
+    /// - Returns: the created alert
+    public func addActions(_ actions: [FieldAction]) -> Self {
+        fieldActions.append(contentsOf: actions)
 
         return self
     }
@@ -208,9 +305,20 @@ public class Alert {
     /// - Parameter action: action to add in actions
     /// - Returns: the created alert
     @discardableResult
-    public func addAction(_ action: Action) -> Alert {
+    public func addAction(_ action: Action) -> Self {
         actions.append(action)
         
+        return self
+    }
+
+    /// Add single action to alert
+    ///
+    /// - Parameter action: action to add in actions
+    /// - Returns: the created alert
+    @discardableResult
+    public func addAction(_ action: FieldAction) -> Self {
+        fieldActions.append(action)
+
         return self
     }
 
@@ -218,22 +326,7 @@ public class Alert {
     ///
     /// - Parameter completion: completion handler
     public func show(withCompletion completion: (() -> Void)? = nil) {
-        var alertTitle: String? = nil
-        var alertMessage: String? = nil
 
-        if let tilte = self.title {
-            alertTitle = tilte
-        }
-
-        if let message = self.message {
-            alertMessage = message
-        }
-        
-        alertController = UIAlertController(
-            title: alertTitle,
-            message: alertMessage,
-            preferredStyle: style)
-        
         setActions()
         configurePresentation()
         

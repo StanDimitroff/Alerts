@@ -29,7 +29,7 @@ it, simply add the following line to your Podfile:
 pod 'Alerts'
 ```
 
-Install via [Carthage](https://github.com/Carthage/Carthage). Add this line to your Cartfile:
+Install via [Carthage](https://github.com/Carthage/Carthage). Simply add this line to your Cartfile:
 
 <pre>github "StanDimitroff/Alerts"</pre>
 
