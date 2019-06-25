@@ -250,11 +250,11 @@ public class Alert: NSObject {
     ///
     /// - Parameter placeholder: the text field placeholder text
     /// - Returns: Alert object
-    public func addTextField(withPlaceholder placeholder: String) -> Self {
+  public func addTextField(_ closure: @escaping (UITextField) -> Void) -> Self {
         if case .actionSheet = style { return self }
 
         alertController.addTextField(configurationHandler: { textField in
-            textField.placeholder = placeholder
+            closure(textField)
         })
 
         return self
