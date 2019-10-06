@@ -30,8 +30,12 @@ class ViewController: UIViewController {
                 title: "Alert with text field",
                 message: "Please enter your name",
                 presenter: self)
-            .addTextField(withPlaceholder: "First name")
-            .addTextField(withPlaceholder: "Last name")
+            .addTextField { textField in
+              textField.placeholder = "First name"
+            }
+            .addTextField { textField in
+              textField.placeholder = "Last name"
+            }
             .addActions(FieldAction("Done", style: .default, responders:
                 [
                     {

@@ -1,5 +1,5 @@
 PODS:
-  - Alerts (1.0.0)
+  - Alerts (1.0.4)
 
 DEPENDENCIES:
   - Alerts (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alerts: 1a314a85830791a05204529c82ca38845b242db5
+  Alerts: a8e6e1d29ca4f9ac3545478d6c3eadecc126994d
 
 PODFILE CHECKSUM: 83d4838ad390db3e1ea851637f8e17c374d46fae
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.0

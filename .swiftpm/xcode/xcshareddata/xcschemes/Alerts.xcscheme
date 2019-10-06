@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1110"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "Alerts_Example.app"
-               BlueprintName = "Alerts_Example"
-               ReferencedContainer = "container:Alerts.xcodeproj">
+               BlueprintIdentifier = "Alerts"
+               BuildableName = "Alerts"
+               BlueprintName = "Alerts"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Alerts_Tests.xctest"
-               BlueprintName = "Alerts_Tests"
-               ReferencedContainer = "container:Alerts.xcodeproj">
+               BlueprintIdentifier = "AlertsTests"
+               BuildableName = "AlertsTests"
+               BlueprintName = "AlertsTests"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,24 +46,13 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Alerts_Tests.xctest"
-               BlueprintName = "Alerts_Tests"
-               ReferencedContainer = "container:Alerts.xcodeproj">
+               BlueprintIdentifier = "AlertsTests"
+               BuildableName = "AlertsTests"
+               BlueprintName = "AlertsTests"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Alerts_Example.app"
-            BlueprintName = "Alerts_Example"
-            ReferencedContainer = "container:Alerts.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -75,18 +64,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Alerts_Example.app"
-            BlueprintName = "Alerts_Example"
-            ReferencedContainer = "container:Alerts.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -94,16 +71,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Alerts_Example.app"
-            BlueprintName = "Alerts_Example"
-            ReferencedContainer = "container:Alerts.xcodeproj">
+            BlueprintIdentifier = "Alerts"
+            BuildableName = "Alerts"
+            BlueprintName = "Alerts"
+            ReferencedContainer = "container:">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

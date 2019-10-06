@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Alerts'
-  s.version          = '1.0.2'
+  s.version          = '1.0.4'
   s.summary          = 'Alerts & actions on top of UIAlertController'
 
   s.description      = <<-DESC
@@ -16,7 +16,7 @@ All in a chainable manner. Both for iPhone and iPad.
   s.social_media_url = 'https://twitter.com/standimitroff'
 
   s.ios.deployment_target = '9.3'
-  s.swift_version = '4.2'
+  s.swift_version = '5'
 
   s.source_files = 'Alerts/Classes/**/*'
 

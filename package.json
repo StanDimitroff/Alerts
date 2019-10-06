@@ -1,6 +1,0 @@
-{
-  "scripts": {
-    "release": "standard-version"
-  },
-  "version": "1.0.0"
-}

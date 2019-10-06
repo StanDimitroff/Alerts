@@ -8,7 +8,11 @@
 ## Build generated
 build/
 DerivedData
-Diasyst/LayoutsPlayground.playground/Sources/Copied\ Files/
+
+/.build
+/Packages
+/*.xcodeproj
+
 
 ## Cocoapods
 Pods
