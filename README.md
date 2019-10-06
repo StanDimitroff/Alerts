@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Alerts.svg?style=flat)](http://cocoapods.org/pods/Alerts)
 [![Platform](https://img.shields.io/cocoapods/p/Alerts.svg?style=flat)](http://cocoapods.org/pods/Alerts)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SPM compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](https://swift.org/package-manager)
 
 
 
@@ -30,6 +31,8 @@ pod 'Alerts'
 Install via [Carthage](https://github.com/Carthage/Carthage). Simply add this line to your Cartfile:
 
 <pre>github "StanDimitroff/Alerts"</pre>
+
+Or add it as a package with [SPM](https://swift.org/package-manager)
 
 ## Author
 
